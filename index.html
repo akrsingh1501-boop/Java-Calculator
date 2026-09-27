@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Calculator</title>
+  <style>
+    body {
+      background: #0f172a;
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      margin-top: 80px;
+    }
+    .calculator {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 15px;
+      width: 300px;
+    }
+    #display {
+      width: 92%;
+      height: 55px;
+      margin-bottom: 15px;
+      font-size: 25px;
+      text-align: right;
+      padding: 10px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    button {
+      height: 55px;
+      border: none;
+      border-radius: 8px;
+      background: #475569;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    button:hover { background: #64748b; }
+    .equal { background: #16a34a; }
+    .clear { background: #dc2626; }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" disabled>
+
+    <div class="buttons">
+      <button class="clear" onclick="clearDisplay()">AC</button>
+      <button onclick="deleteLast()">DEL</button>
+      <button onclick="add('/')">÷</button>
+      <button onclick="add('*')">×</button>
+
+      <button onclick="add('7')">7</button>
+      <button onclick="add('8')">8</button>
+      <button onclick="add('9')">9</button>
+      <button onclick="add('-')">−</button>
+
+      <button onclick="add('4')">4</button>
+      <button onclick="add('5')">5</button>
+      <button onclick="add('6')">6</button>
+      <button onclick="add('+')">+</button>
+
+      <button onclick="add('1')">1</button>
+      <button onclick="add('2')">2</button>
+      <button onclick="add('3')">3</button>
+      <button class="equal" onclick="calculate()">=</button>
+
+      <button onclick="add('0')">0</button>
+      <button onclick="add('.')">.</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById("display");
+
+    function add(value) {
+      display.value += value;
+    }
+
+    function clearDisplay() {
+      display.value = "";
+    }
+
+    function deleteLast() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = "Error";
+      }
+    }
+  </script>
+</body>
+</html>
